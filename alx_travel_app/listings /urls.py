@@ -1,11 +1,8 @@
-from rest_framework import routers 
-from django.urls import path, include
-from .views import BookingViewSet, ListingViewSet
+from rest_framework.routers import DefaultRouter
+from .views import ListingViewsets, BookingViewsets
 
-router = routers.DefaultRouter()
-router.register(r'bookings', BookingViewSet, basename='booking')
-router.register(r'listings', ListingViewSet, basename='listing')
+router = DefaultRouter()
+router.register(r'listings', ListingViewsets, basename='listing')
+router.register(r'bookings', BookingViewsets, basename='booking')
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = router.urls
